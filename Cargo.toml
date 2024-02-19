@@ -1,0 +1,11 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/project-core",
+    "crates/project-core/project-core-domain",
+]
+
+[workspace.package]
+authors = ["yallxe"]
+license = "MIT"
+readme = "README.md"
