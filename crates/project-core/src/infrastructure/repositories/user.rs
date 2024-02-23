@@ -4,6 +4,7 @@ use project_core_domain::repositories::UserRepository;
 use project_core_domain::result::DomainResult;
 use crate::infrastructure::models::UserSqlModel;
 
+#[derive(Clone)] // TODO: remove clone
 pub struct UserRepositoryImpl {
     db: PgPool,
 }
@@ -14,6 +15,7 @@ impl UserRepositoryImpl {
     }
 }
 
+#[async_trait::async_trait]
 impl UserRepository for UserRepositoryImpl {
     async fn create(&self, user: CreateUserModel) -> DomainResult<UserModel> {
         let query = sqlx::query_as!(
