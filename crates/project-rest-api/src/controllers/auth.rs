@@ -2,6 +2,7 @@ use crate::prelude::*;
 use actix_web::{post, Responder, web};
 use project_core::domain::services::RegistrationService;
 use crate::dto::{RegisterUserDto, UserViewDto};
+use crate::extractors::di::Inject;
 use crate::response::ApiResponse;
 
 pub fn setup_controller(cfg: &mut web::ServiceConfig) {
@@ -11,7 +12,7 @@ pub fn setup_controller(cfg: &mut web::ServiceConfig) {
 #[post("/register")]
 pub async fn register_user(
     form: web::Json<RegisterUserDto>,
-    registration_service: web::Data<dyn RegistrationService>
+    registration_service: Inject<dyn RegistrationService>
 ) -> Result<impl Responder> {
     let res = registration_service.try_register_user(
         form.0.into()

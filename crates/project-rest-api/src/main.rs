@@ -3,8 +3,6 @@ use actix_web::{App, HttpServer, web};
 use sqlx::PgPool;
 use project_core::domain::repositories::UserRepository;
 use project_core::domain::services::RegistrationService;
-use project_core::infrastructure::repositories::UserRepositoryImpl;
-use project_core::services::RegistrationServiceImpl;
 use crate::config::Configuration;
 use crate::state::AppState;
 
@@ -16,11 +14,7 @@ mod config;
 mod error;
 mod prelude;
 mod dto;
-
-pub struct Container {
-    user_repository: Arc<dyn UserRepository>,
-    registration_service: Arc<dyn RegistrationService>,
-}
+mod extractors;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -33,20 +27,9 @@ async fn main() -> std::io::Result<()> {
         db: db.clone(), config: config.clone()
     };
 
-    // TODO: Repositories, services, etc. should be injected through FromRequest trait
-    let user_repository = UserRepositoryImpl::new(db.clone());
-    let registration_service = RegistrationServiceImpl::new(user_repository.clone());
-
-    let container = Container {
-        user_repository: Arc::new(user_repository),
-        registration_service: Arc::new(registration_service),
-    };
-
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(state.clone()))
-            .app_data(web::Data::from(container.registration_service.clone()))
-            .app_data(web::Data::from(container.user_repository.clone()))
             .service(
                 web::scope("/health")
                     .configure(controllers::health::setup_controller)

@@ -10,7 +10,7 @@ pub struct AppState {
 }
 
 impl AppState {
-    pub fn from_request(req: &HttpRequest) -> &Data<AppState> {
-        req.app_data::<Data<AppState>>().unwrap()
+    pub fn from_request(req: &HttpRequest) -> Data<AppState> {
+        req.app_data::<Data<AppState>>().unwrap().clone()
     }
 }

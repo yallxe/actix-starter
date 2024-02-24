@@ -14,6 +14,12 @@ impl RegistrationServiceImpl {
             user_repository: Arc::new(user_repository),
         }
     }
+    
+    pub fn from(user_repository: Arc<dyn UserRepository>) -> Self {
+        Self {
+            user_repository,
+        }
+    }
 }
 
 #[async_trait::async_trait]

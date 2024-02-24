@@ -4,7 +4,6 @@ use project_core_domain::repositories::UserRepository;
 use project_core_domain::result::DomainResult;
 use crate::infrastructure::models::UserSqlModel;
 
-#[derive(Clone)] // TODO: remove clone
 pub struct UserRepositoryImpl {
     db: PgPool,
 }
