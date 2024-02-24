@@ -45,8 +45,8 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(state.clone()))
-            .app_data(web::Data::new(container.registration_service.clone()))
-            .app_data(web::Data::new(container.user_repository.clone()))
+            .app_data(web::Data::from(container.registration_service.clone()))
+            .app_data(web::Data::from(container.user_repository.clone()))
             .service(
                 web::scope("/health")
                     .configure(controllers::health::setup_controller)
