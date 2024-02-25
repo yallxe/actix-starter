@@ -1318,21 +1318,12 @@ dependencies = [
 name = "project-core"
 version = "0.1.0"
 dependencies = [
- "async-trait",
- "chrono",
- "project-core-domain",
- "sqlx",
- "thiserror",
- "tokio",
-]
-
-[[package]]
-name = "project-core-domain"
-version = "0.1.0"
-dependencies = [
  "anyhow",
  "async-trait",
  "chrono",
+ "sqlx",
+ "thiserror",
+ "tokio",
 ]
 
 [[package]]

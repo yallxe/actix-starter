@@ -14,8 +14,7 @@ async-trait = "0.1.77"
 chrono = "0.4.34"
 sqlx = { version = "0.7.3", features = ["postgres", "runtime-tokio", "chrono"] }
 thiserror = "1.0.57"
-
-project-core-domain = { path = "./project-core-domain" }
+anyhow = "1.0.80"
 
 [dev-dependencies]
 tokio = { version = "1.36.0", features = ["test-util", "macros"] }  # Used for async tests

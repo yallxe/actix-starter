@@ -1,8 +1,9 @@
+use crate::prelude::*;
+use crate::domain::models::{CreateUserModel, RegisterUserModel, UserModel};
+use crate::domain::repositories::UserRepository;
+use crate::domain::services::{RegistrationService};
+use crate::error::ClientError;
 use std::sync::Arc;
-use project_core_domain::models::{CreateUserModel, RegisterUserModel, UserModel};
-use project_core_domain::repositories::UserRepository;
-use project_core_domain::services::{RegistrationService};
-use project_core_domain::result::DomainResult;
 
 pub struct RegistrationServiceImpl {
     user_repository: Arc<dyn UserRepository>,
@@ -24,8 +25,14 @@ impl RegistrationServiceImpl {
 
 #[async_trait::async_trait]
 impl RegistrationService for RegistrationServiceImpl {
-    async fn try_register_user(&self, user: RegisterUserModel) -> DomainResult<UserModel> {
-        // TODO: Check if user is already registered, if so return an error
+    async fn try_register_user(&self, user: RegisterUserModel) -> Result<UserModel> {
+        let existing_user = self.user_repository.find_by_username(user.username.clone()).await?;
+        if existing_user.is_some() {
+            return Err(ClientError::UsernameIsTaken {
+                username: user.username,
+            }.into());
+        }
+        
         self.user_repository.create(CreateUserModel {
             username: user.username,
             email: user.email,

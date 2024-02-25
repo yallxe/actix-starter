@@ -1,5 +1,5 @@
 use sqlx::FromRow;
-use project_core_domain::models::UserModel;
+use crate::domain::models::UserModel;
 
 #[derive(FromRow)]
 pub struct UserSqlModel {

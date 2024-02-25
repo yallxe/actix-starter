@@ -5,7 +5,7 @@ use actix_web::HttpRequest;
 use project_core::domain::repositories::UserRepository;
 use project_core::domain::services::RegistrationService;
 use project_core::infrastructure::repositories::UserRepositoryImpl;
-use project_core::services::RegistrationServiceImpl;
+use project_core::infrastructure::services::RegistrationServiceImpl;
 
 pub trait Injectable: 'static {
     async fn get_instance(req: HttpRequest) -> Result<Arc<Self>>;

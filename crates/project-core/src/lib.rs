@@ -1,4 +1,6 @@
 pub mod infrastructure;
-pub mod services;
+pub mod domain;
+pub mod error;
+mod prelude;
 
-pub use project_core_domain as domain;
+pub use error::{Error, ClientError};

@@ -1,8 +1,8 @@
 use sqlx::PgPool;
 use project_core::infrastructure::repositories::UserRepositoryImpl;
-use project_core::services::RegistrationServiceImpl;
-use project_core_domain::models::RegisterUserModel;
-use project_core_domain::services::RegistrationService;
+use project_core::infrastructure::services::RegistrationServiceImpl;
+use project_core::domain::models::RegisterUserModel;
+use project_core::domain::services::RegistrationService;
 
 #[tokio::test]
 async fn just_testing() {
