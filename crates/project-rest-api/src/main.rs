@@ -1,8 +1,5 @@
-use std::sync::Arc;
 use actix_web::{App, HttpServer, web};
 use sqlx::PgPool;
-use project_core::domain::repositories::UserRepository;
-use project_core::domain::services::RegistrationService;
 use crate::config::Configuration;
 use crate::state::AppState;
 
