@@ -1,4 +1,5 @@
 use actix_web::{App, HttpServer, web};
+use actix_web::middleware::Logger as ActixLoggerMiddleware;
 use sqlx::PgPool;
 use crate::config::Configuration;
 use crate::state::AppState;
@@ -26,6 +27,7 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(move || {
         App::new()
+            .wrap(ActixLoggerMiddleware::default())
             .app_data(web::Data::new(state.clone()))
             .service(
                 web::scope("/health")
