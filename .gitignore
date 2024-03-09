@@ -1,3 +1,11 @@
+# Builds
 /target
+
+# Configuration
 .env
+
+# Development
 .idea
+
+# Mac OS related
+.DS_Store
