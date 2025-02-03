@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = [
+members = [ 
     "crates/project-core",
     "crates/project-rest-api",
 ]

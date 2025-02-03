@@ -9,6 +9,12 @@ pub fn setup_controller(cfg: &mut web::ServiceConfig) {
     cfg.service(register_user);
 }
 
+#[utoipa::path(
+    responses(
+        (status = 200, description = "User registered", body = UserViewDto),
+    ),
+    context_path = "/auth"
+)]
 #[post("/register")]
 pub async fn register_user(
     form: web::Json<RegisterUserDto>,

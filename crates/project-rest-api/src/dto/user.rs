@@ -1,7 +1,8 @@
 use serde::{Serialize, Deserialize};
 use project_core::domain::models::{RegisterUserModel, UserModel};
+use utoipa::ToSchema;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, ToSchema)]
 pub struct UserViewDto {
     pub id: i64,
     pub username: String,
@@ -20,7 +21,7 @@ impl From<UserModel> for UserViewDto {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, ToSchema)]
 pub struct RegisterUserDto {
     pub username: String,
     pub email: String,
