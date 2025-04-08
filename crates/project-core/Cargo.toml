@@ -17,5 +17,5 @@ thiserror = "1.0.57"
 anyhow = "1.0.80"
 
 [dev-dependencies]
-tokio = { version = "1.36.0", features = ["test-util", "macros"] }  # Used for async tests
+tokio = { version = "1.38.2", features = ["test-util", "macros"] }  # Used for async tests
 
